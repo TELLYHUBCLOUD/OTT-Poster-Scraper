@@ -3,3 +3,4 @@ uvicorn
 curl_cffi
 pycryptodome
 python-socketio[client]
+beautifulsoup4
