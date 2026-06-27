@@ -40,6 +40,8 @@ from posters.viu import router as viu_router
 from posters.dangal import router as dangal_router
 from posters.tataplay import router as tataplay_router
 from posters.tubi import router as tubi_router
+from posters.hotstar import router as hotstar_router
+from posters.auto import router as auto_router
 
 app = FastAPI(title="AnimeCall Botz Posters API", version="1.0")
 
@@ -82,7 +84,9 @@ poster_routers = [
     viu_router,
     dangal_router,
     tataplay_router,
-    tubi_router
+    tubi_router,
+    hotstar_router,
+    auto_router
 ]
 
 for router in poster_routers:
