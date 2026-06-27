@@ -116,3 +116,50 @@ app.include_router(
 @app.get("/")
 def home():
     return {"message": "🎬 Welcome to AnimeCall Posters API"}
+
+@app.get("/help")
+def api_help(deps: None = Depends(verify_token)):
+    """
+    Returns a JSON dictionary describing available endpoints, their prefixes,
+    required query parameters and a brief description.
+    """
+    return {
+        "message": "API help",
+        "endpoints": {
+            "/posters/auto": {
+                "method": "GET",
+                "params": {"url": "URL‑encoded OTT page"},
+                "description": "Auto‑detect and fetch poster for any supported OTT site"
+            },
+            "/posters/<router>": {
+                "method": "GET",
+                "params": {"url": "URL‑encoded OTT page"},
+                "description": "Specific scraper for a particular OTT service"
+            },
+            "/db/auto/url": {
+                "method": "GET",
+                "params": {"url": "URL‑encoded database page"},
+                "description": "Direct URL scraper for supported database sites"
+            },
+            "/db/auto/title": {
+                "method": "GET",
+                "params": {"title": "search title", "site": "optional (anilist|imdb|kitsu|letterboxd|mydramalist|tvdb|tvmaze|tmdb)"},
+                "description": "Search by title across database sites"
+            },
+            "/adult/auto/url": {
+                "method": "GET",
+                "params": {"url": "URL‑encoded adult‑site page"},
+                "description": "Direct URL scraper for adult databases"
+            },
+            "/adult/auto/title": {
+                "method": "GET",
+                "params": {"title": "search title", "site": "optional (iafd|theporndb|afd|stashbox|prdb)"},
+                "description": "Search by title across adult databases"
+            },
+            "/": {
+                "method": "GET",
+                "description": "Welcome message"
+            }
+        }
+    }
+}
