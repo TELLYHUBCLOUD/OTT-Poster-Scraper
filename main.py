@@ -162,4 +162,3 @@ def api_help(deps: None = Depends(verify_token)):
             }
         }
     }
-}
