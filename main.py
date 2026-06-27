@@ -43,6 +43,7 @@ from posters.tubi import router as tubi_router
 from posters.hotstar import router as hotstar_router
 from posters.auto import router as auto_router
 from db.auto import router as db_router
+from adult.auto import router as adult_router
 
 app = FastAPI(title="AnimeCall Botz Posters API", version="1.0")
 
@@ -102,6 +103,13 @@ app.include_router(
     db_router,
     prefix="/db",
     tags=["Database Sites"],
+    dependencies=[Depends(verify_token)]
+)
+
+app.include_router(
+    adult_router,
+    prefix="/adult",
+    tags=["Adult Content"],
     dependencies=[Depends(verify_token)]
 )
 
