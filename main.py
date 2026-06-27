@@ -40,6 +40,10 @@ from posters.viu import router as viu_router
 from posters.dangal import router as dangal_router
 from posters.tataplay import router as tataplay_router
 from posters.tubi import router as tubi_router
+from posters.hotstar import router as hotstar_router
+from posters.auto import router as auto_router
+from db.auto import router as db_router
+from adult.auto import router as adult_router
 
 app = FastAPI(title="AnimeCall Botz Posters API", version="1.0")
 
@@ -82,7 +86,9 @@ poster_routers = [
     viu_router,
     dangal_router,
     tataplay_router,
-    tubi_router
+    tubi_router,
+    hotstar_router,
+    auto_router
 ]
 
 for router in poster_routers:
@@ -92,6 +98,20 @@ for router in poster_routers:
         tags=["Posters"],
         dependencies=[Depends(verify_token)]
     )
+
+app.include_router(
+    db_router,
+    prefix="/db",
+    tags=["Database Sites"],
+    dependencies=[Depends(verify_token)]
+)
+
+app.include_router(
+    adult_router,
+    prefix="/adult",
+    tags=["Adult Content"],
+    dependencies=[Depends(verify_token)]
+)
 
 @app.get("/")
 def home():
