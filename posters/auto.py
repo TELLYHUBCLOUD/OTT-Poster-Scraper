@@ -27,7 +27,7 @@ from posters.jojo import jojo_poster
 from posters.lionsgate import lionsgate
 from posters.mubi import mubi
 from posters.mxplayer import mxplayer
-from posters.nf import fetch_netflix_metadata
+from posters.nf import fetch_primary_metadata
 from posters.playflix import playflix
 from posters.plextv import plex
 from posters.sainaplay import sainaplay_poster
@@ -116,7 +116,7 @@ def auto_detect_poster(url: str = Query(..., description="Content URL from any s
         elif "mxplayer.in" in domain:
             return handle_response(mxplayer(url))
         elif "netflix.com" in domain:
-            return handle_response(fetch_netflix_metadata(url))
+            return handle_response(fetch_primary_metadata(url))
         elif "playflix.app" in domain or "playflix.tv" in domain or "qwilted-cds.cqloud.com" in domain:
             return handle_response(playflix(url))
         elif "plex.tv" in domain:
