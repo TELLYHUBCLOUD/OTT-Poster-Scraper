@@ -1,5 +1,4 @@
-from fastapi import FastAPI, Depends
-from auth import verify_token
+from fastapi import FastAPI
 
 from posters.crunchyroll import router as crunchy_router
 from posters.bms import router as bms_router
@@ -95,22 +94,19 @@ for router in poster_routers:
     app.include_router(
         router,
         prefix="/posters",
-        tags=["Posters"],
-        dependencies=[Depends(verify_token)]
+        tags=["Posters"]
     )
 
 app.include_router(
     db_router,
     prefix="/db",
-    tags=["Database Sites"],
-    dependencies=[Depends(verify_token)]
+    tags=["Database Sites"]
 )
 
 app.include_router(
     adult_router,
     prefix="/adult",
-    tags=["Adult Content"],
-    dependencies=[Depends(verify_token)]
+    tags=["Adult Content"]
 )
 
 @app.get("/")
@@ -118,7 +114,7 @@ def home():
     return {"message": "🎬 Welcome to AnimeCall Posters API"}
 
 @app.get("/help")
-def api_help(deps: None = Depends(verify_token)):
+def api_help():
     """
     Returns a JSON dictionary describing available endpoints, their prefixes,
     required query parameters and a brief description.

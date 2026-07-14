@@ -52,7 +52,7 @@ Built for automation, & bots that need **clean poster assets** from content URLs
 
 ## ✨ Features
 
-- 🔐 Token-protected API
+- 🔓 Public API (No token required)
 - 🧩 Modular router per platform
 - 🖼️ Extracts **maximum quality posters**
 - ⚡ Pure regex + JSON parsing (no browser, no Selenium)
@@ -67,7 +67,6 @@ Built for automation, & bots that need **clean poster assets** from content URLs
 animecall-poster/
 │
 ├── main.py
-├── auth.py
 ├── posters/
 │ ├── aaonxt.py
 │ ├── addatimes.py
@@ -128,16 +127,7 @@ Run the server:
 uvicorn main:app --reload
 ```
 
-## 🔑 Authentication
 
-All /posters/* routes are protected.
-
-Send token in headers:
-```bash
-Authorization: Bearer YOUR_API_TOKEN
-```
-
-Token verification logic is implemented in auth.py.
 
 ## 🌐 API Usage
 

@@ -1,8 +1,7 @@
 import urllib.parse
 import re
-from fastapi import APIRouter, Query, Depends
+from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
-from auth import verify_token
 
 router = APIRouter()
 
